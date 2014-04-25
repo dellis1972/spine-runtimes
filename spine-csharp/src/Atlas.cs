@@ -61,14 +61,18 @@ namespace Spine {
 			this.ReadFile(path, textureLoader).Wait();
 		}
 #else
-		public Atlas (String path, TextureLoader textureLoader) {
+		public Atlas (String path, TextureLoader textureLoader, TitleContainer container) {
 
 #if WINDOWS_PHONE
             Stream stream = Microsoft.Xna.Framework.TitleContainer.OpenStream(path);
             using (StreamReader reader = new StreamReader(stream))
             {
+#elif PCL
+			Stream stream = container.OpenStream(path);
+			using (StreamReader reader = new StreamReader(stream))
+			{
 #else
-            using (StreamReader reader = new StreamReader(path)) {
+			using (StreamReader reader = new StreamReader(path)) {
 #endif
 				try {
 					Load(reader, Path.GetDirectoryName(path), textureLoader);
@@ -284,5 +288,9 @@ namespace Spine {
 	public interface TextureLoader {
 		void Load (AtlasPage page, String path);
 		void Unload (Object texture);
+	}
+
+	public interface TitleContainer {
+		Stream OpenStream (string path);
 	}
 }

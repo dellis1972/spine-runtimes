@@ -13,6 +13,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
+#if !PCL
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type. Only Windows
@@ -23,7 +24,7 @@ using System.Runtime.InteropServices;
 // project is exposed to COM. On other platforms, it unique identifies the
 // title storage container when deploying this assembly to the device.
 [assembly: Guid("3ac8567e-9ae8-4624-87b9-a84f0101c629")]
-
+#endif
 // Version information for an assembly consists of the following four values:
 //
 //      Major Version
